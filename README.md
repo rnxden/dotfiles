@@ -1,5 +1,5 @@
 <h1 align='center'>
-  Arden's Dotfiles
+  🛠️ Arden's Dotfiles 🛠️
 </h1>
 
 <p align='center'>
