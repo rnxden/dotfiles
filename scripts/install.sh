@@ -26,3 +26,6 @@ fi
 # Create symlinks for zsh
 symlink "$PWD/zsh/.zshrc" "$HOME/.zshrc"
 symlink "$PWD/zsh/.zimrc" "$HOME/.zimrc"
+
+# Create symlinks for tmux
+symlink "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
