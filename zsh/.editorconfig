@@ -1,5 +1,5 @@
 root = false
 
-[*.{sh,zsh,zshrc}]
+[.zshrc]
 indent_size = 2
 indent_style = space
