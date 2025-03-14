@@ -132,47 +132,13 @@ precmd_prompt_info_git() {
       || ref=$(git rev-parse --short HEAD 2> /dev/null) \
       || return 0
 
-    prompt_info_git="on %F{magenta} $ref"
+    prompt_info_git=" %F{red}@%F{magenta}$ref"
 
-    # Get repository status
-    prompt_info_git+=" %F{red}["
-
-    local git_status=$(git status --porcelain 2> /dev/null)
-
-    # Check for detached HEAD
-    if [[ $(git rev-parse --abbrev-ref --symbolic-full-name HEAD 2> /dev/null) == "HEAD" ]]; then
-      prompt_info_git+="✕"
-    else
-      local behind=$(git rev-list HEAD..$ref@{upstream} 2> /dev/null | wc -l)
-      local ahead=$(git rev-list $ref@{upstream}..HEAD 2> /dev/null | wc -l)
-
-      if [[ $behind == 0 ]] && [[ $ahead == 0 ]]; then # HEAD is synced with remote
-        prompt_info_git+="✓"
-      elif [[ $behind > 0 ]] && [[ $ahead == 0 ]]; then # HEAD is behind remote
-        prompt_info_git+="↓"
-      elif [[ $behind == 0 ]] && [[ $ahead > 0 ]]; then # HEAD is ahead of remote
-        prompt_info_git+="↑"
-      elif [[ $behind > 0 ]] && [[ $ahead > 0 ]]; then # HEAD is diverged from remote
-        prompt_info_git+="↕"
-      fi
+    if [[ ! -z "$(git status --porcelain -unormal 2> /dev/null)" ]]; then
+      prompt_info_git+="%F{yellow}*"
     fi
 
-    # Check for untracked files
-    if echo "$git_status" | grep -q '^?? ' &> /dev/null; then
-      prompt_info_git+="?"
-    fi
-
-    # Check for unstaged changes
-    if echo "$git_status" | grep -qE '^[ MARC][MD] ' &> /dev/null; then
-      prompt_info_git+="!"
-    fi
-
-    # Check for staged changes
-    if echo "$git_status" | grep -qE '^(D[ M]|[MARC][ MD]) ' &> /dev/null; then
-      prompt_info_git+="&"
-    fi
-
-    prompt_info_git+="]%f"
+    prompt_info_git+="%f"
   fi
 }
 
@@ -183,10 +149,8 @@ precmd_prompt_info() {
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\$prompt_info_cwd "
+PROMPT="\$prompt_info_cwd\$prompt_info_git "
 PROMPT+="%(?:%F{green}:%F{red})❯%f "
-
-RPROMPT="\$prompt_info_git"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
