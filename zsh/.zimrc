@@ -1,0 +1,3 @@
+zmodule zdharma-continuum/fast-syntax-highlighting
+zmodule zsh-users/zsh-completions --fpath src
+zmodule zsh-users/zsh-autosuggestions
