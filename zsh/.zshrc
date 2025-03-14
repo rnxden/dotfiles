@@ -116,6 +116,8 @@ precmd_prompt_info_time() {
 
     prompt_info_time="%F{blue}$human%f "
   fi
+
+  unset prompt_data_time
 }
 
 precmd_prompt_info_cwd() {
