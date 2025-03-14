@@ -1,0 +1,28 @@
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = master
+
+[commit]
+	verbose = true
+
+[alias]
+	a = add
+	b = branch
+	c = commit
+	co = checkout
+	d = diff
+	ds = diff --staged
+	f = fetch
+	l = log --all --graph --format=format:'%C(bold yellow)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset) %C(auto)%d%C(reset)'
+	ll = log --all --graph --format=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an <%ae>%C(reset)'
+	m = merge
+	p = pull
+	ps = push
+	r = rebase
+	s = status --short --branch
+	ss = status
+	st = stash
+	sw = switch
+	t = tag
