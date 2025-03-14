@@ -1,0 +1,212 @@
+## Variables
+
+# Set XDG variables (not required, but useful for scripts)
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"   # stores data files
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"    # stores config files
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}" # stores persistent state files
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"       # stores non-essential cache files
+
+# Add local bin directory to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Set default programs
+export EDITOR='nvim'
+export MANPAGER='nvim +Man!'
+#export TERMINAL=
+#export BROWSER=
+
+# Enable truecolor support for programs that support it
+export COLORTERM=truecolor
+
+## Plugin Manager
+
+# Bootstrap zimfw plugin manager
+ZIM_HOME="$HOME/.zim"
+ZIM_CONFIG_FILE="$HOME/.zimrc"
+
+if [[ ! -e "$ZIM_HOME/zimfw.zsh" ]]; then
+  curl -fsSL --create-dirs -o "$ZIM_HOME/zimfw.zsh" \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing plugins
+if [[ ! "$ZIM_HOME/init.zsh" -nt "$ZIM_CONFIG_FILE" ]]; then
+  source "$ZIM_HOME/zimfw.zsh" init
+fi
+
+# Initialize zimfw
+source "${ZIM_HOME}/init.zsh"
+
+## Aliases
+
+# Colorize command output
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias ip="ip --color=auto"
+
+# Backtrack directories
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Zoxide shortcuts (cd alternative)
+eval "$(zoxide init zsh)"
+
+alias ze="zoxide edit"
+alias zq="zoxide query"
+
+# Eza shortcuts (ls alternative)
+alias x="eza --icons --group-directories-first -g --git --time-style='+%m.%d.%y %H:%M'"
+
+alias xa="x -a"
+alias xal="x -al"
+alias xl="x -l"
+
+# Other shortcuts
+alias g="git"
+alias v="vim"
+alias nv="nvim"
+alias d="docker"
+alias k="kubectl"
+
+## Options
+
+HISTFILE="$HOME/.zhistory"
+HISTSIZE=10000 # maximum amount of history saved in a shell session
+SAVEHIST=10000 # maximum amount of history saved to disk
+
+# Share history between multiple concurrent shell sessions
+setopt APPEND_HISTORY     # append to history file instead of overwriting it
+setopt INC_APPEND_HISTORY # constantly append to history file instead of only at shell exit
+setopt SHARE_HISTORY      # constantly import from history file
+
+# Remove duplicates from command history
+setopt HIST_IGNORE_DUPS     # don't save consecutive duplicate commands to the history list
+setopt HIST_IGNORE_ALL_DUPS # don't save any duplicate commands to the history list
+setopt HIST_SAVE_NO_DUPS    # don't write any duplicate commands to the history file
+setopt HIST_FIND_NO_DUPS    # don't find any duplicate commands when searching through command history
+
+setopt HIST_IGNORE_SPACE    # don't save commands starting with a space to the history list
+
+## Completion
+
+autoload -U compinit && compinit -d "$HOME/.zcompdump"
+
+zstyle ':completion:*' menu select # enable completion menu
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # allow case insensitive matching
+zstyle ':completion:*:warnings' format '%F{red}no matches for:%f %d' # improve error message
+eval "$(dircolors)" && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize matches
+
+## Prompt
+
+precmd_prompt_info_cwd() {
+  prompt_info_cwd="%F{8}" # bright black
+
+  local dirnames=( ${(s:/:)$(print -P '%~')} )
+  local dirnames_len=${#dirnames}
+
+  if [[ "${dirnames[1]}" != "~" ]]; then
+    prompt_info_cwd+="/"
+  fi
+
+  for (( i=1; i<$dirnames_len; i++ )); do
+    local dirname=${dirnames[i]}
+    local dirname_trunc=${dirname[1,1]}
+    if [[ "$dirname_trunc" == "." ]]; then
+      dirname_trunc=${dirname[1,2]}
+    fi
+    prompt_info_cwd+="$dirname_trunc/"
+  done
+
+  prompt_info_cwd+="%F{cyan}${dirnames[-1]}%f"
+}
+
+precmd_prompt_info_git() {
+  unset prompt_info_git
+
+  # Check for git repository
+  if git rev-parse --git-dir &> /dev/null; then
+    # Get branch or refname
+    local ref
+    ref=$(git symbolic-ref --short HEAD 2> /dev/null) \
+      || ref=$(git describe --tags --exact-match HEAD 2> /dev/null) \
+      || ref=$(git rev-parse --short HEAD 2> /dev/null) \
+      || return 0
+
+    prompt_info_git="on %F{magenta} $ref"
+
+    # Get repository status
+    prompt_info_git+=" %F{red}["
+
+    local git_status=$(git status --porcelain 2> /dev/null)
+
+    # Check for detached HEAD
+    if [[ $(git rev-parse --abbrev-ref --symbolic-full-name HEAD 2> /dev/null) == "HEAD" ]]; then
+      prompt_info_git+="✕"
+    else
+      local behind=$(git rev-list HEAD..$ref@{upstream} 2> /dev/null | wc -l)
+      local ahead=$(git rev-list $ref@{upstream}..HEAD 2> /dev/null | wc -l)
+
+      if [[ $behind == 0 ]] && [[ $ahead == 0 ]]; then # HEAD is synced with remote
+        prompt_info_git+="✓"
+      elif [[ $behind > 0 ]] && [[ $ahead == 0 ]]; then # HEAD is behind remote
+        prompt_info_git+="↓"
+      elif [[ $behind == 0 ]] && [[ $ahead > 0 ]]; then # HEAD is ahead of remote
+        prompt_info_git+="↑"
+      elif [[ $behind > 0 ]] && [[ $ahead > 0 ]]; then # HEAD is diverged from remote
+        prompt_info_git+="↕"
+      fi
+    fi
+
+    # Check for untracked files
+    if echo "$git_status" | grep -q '^?? ' &> /dev/null; then
+      prompt_info_git+="?"
+    fi
+
+    # Check for unstaged changes
+    if echo "$git_status" | grep -qE '^[ MARC][MD] ' &> /dev/null; then
+      prompt_info_git+="!"
+    fi
+
+    # Check for staged changes
+    if echo "$git_status" | grep -qE '^(D[ M]|[MARC][ MD]) ' &> /dev/null; then
+      prompt_info_git+="&"
+    fi
+
+    prompt_info_git+="]%f"
+  fi
+}
+
+precmd_prompt_info() {
+  precmd_prompt_info_cwd
+  precmd_prompt_info_git
+}
+precmd_functions+=( precmd_prompt_info )
+setopt PROMPT_SUBST # expand variables in prompt
+
+PROMPT="\$prompt_info_cwd "
+PROMPT+="%(?:%F{green}:%F{red})❯%f "
+
+RPROMPT="\$prompt_info_git"
+
+# Make command line navigation behave like emacs
+WORDCHARS="${WORDCHARS//[\/.-]}"
+bindkey -e
+
+## Plugins
+
+# Configure zsh-autosuggestions
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_STRATEGY=("completion")
+
+#ZSH_AUTOSUGGEST_CLEAR_WIDGETS=()
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
+ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS=()
+
+bindkey '^s' autosuggest-accept
+
+## Misc
+
+# Disable CTRL+S hanging
+stty -ixon
