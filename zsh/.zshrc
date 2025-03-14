@@ -37,6 +37,34 @@ fi
 # Initialize zimfw
 source "${ZIM_HOME}/init.zsh"
 
+## Options
+
+HISTFILE="$HOME/.zhistory"
+HISTSIZE=10000 # maximum amount of history saved in a shell session
+SAVEHIST=10000 # maximum amount of history saved to disk
+
+# Share history between multiple concurrent shell sessions
+setopt APPEND_HISTORY     # append to history file instead of overwriting it
+setopt INC_APPEND_HISTORY # constantly append to history file instead of only at shell exit
+setopt SHARE_HISTORY      # constantly import from history file
+
+# Remove duplicates from command history
+setopt HIST_IGNORE_DUPS     # don't save consecutive duplicate commands to the history list
+setopt HIST_IGNORE_ALL_DUPS # don't save any duplicate commands to the history list
+setopt HIST_SAVE_NO_DUPS    # don't write any duplicate commands to the history file
+setopt HIST_FIND_NO_DUPS    # don't find any duplicate commands when searching through command history
+
+setopt HIST_IGNORE_SPACE    # don't save commands starting with a space to the history list
+
+## Completion
+
+autoload -U compinit && compinit -d "$HOME/.zcompdump"
+
+zstyle ':completion:*' menu select # enable completion menu
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # allow case insensitive matching
+zstyle ':completion:*:warnings' format '%F{red}no matches for:%f %d' # improve error message
+eval "$(dircolors)" && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize matches
+
 ## Aliases
 
 # Colorize command output
@@ -67,34 +95,6 @@ alias v="vim"
 alias nv="nvim"
 alias d="docker"
 alias k="kubectl"
-
-## Options
-
-HISTFILE="$HOME/.zhistory"
-HISTSIZE=10000 # maximum amount of history saved in a shell session
-SAVEHIST=10000 # maximum amount of history saved to disk
-
-# Share history between multiple concurrent shell sessions
-setopt APPEND_HISTORY     # append to history file instead of overwriting it
-setopt INC_APPEND_HISTORY # constantly append to history file instead of only at shell exit
-setopt SHARE_HISTORY      # constantly import from history file
-
-# Remove duplicates from command history
-setopt HIST_IGNORE_DUPS     # don't save consecutive duplicate commands to the history list
-setopt HIST_IGNORE_ALL_DUPS # don't save any duplicate commands to the history list
-setopt HIST_SAVE_NO_DUPS    # don't write any duplicate commands to the history file
-setopt HIST_FIND_NO_DUPS    # don't find any duplicate commands when searching through command history
-
-setopt HIST_IGNORE_SPACE    # don't save commands starting with a space to the history list
-
-## Completion
-
-autoload -U compinit && compinit -d "$HOME/.zcompdump"
-
-zstyle ':completion:*' menu select # enable completion menu
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # allow case insensitive matching
-zstyle ':completion:*:warnings' format '%F{red}no matches for:%f %d' # improve error message
-eval "$(dircolors)" && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize matches
 
 ## Prompt
 
