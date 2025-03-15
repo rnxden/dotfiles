@@ -29,3 +29,6 @@ symlink "$PWD/zsh/.zimrc" "$HOME/.zimrc"
 
 # Create symlinks for tmux
 symlink "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
+
+# Create symlinks for git
+symlink "$PWD/git/.gitconfig" "$HOME/.gitconfig"
