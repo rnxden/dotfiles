@@ -215,7 +215,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
 ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS=()
 
-bindkey '^s' autosuggest-accept
+bindkey '^y' autosuggest-accept
 
 ## Misc
 
