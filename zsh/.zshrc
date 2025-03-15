@@ -156,6 +156,20 @@ precmd_prompt_info_git() {
 
     prompt_info_git=" %F{red}@%F{magenta}$ref"
 
+    # Check if branch is ahead/behind upstream
+    local revs=( $(git rev-list --count --left-right '@{u}...HEAD' 2> /dev/null) )
+    local behind=$revs[1]
+    local ahead=$revs[2]
+
+    if [[ behind -gt 0 ]]; then
+      prompt_info_git+="%F{white}-%F{red}$behind"
+    fi
+
+    if [[ ahead -gt 0 ]]; then
+      prompt_info_git+="%F{white}+%F{green}$ahead"
+    fi
+
+    # Check if branch is dirty
     if [[ ! -z "$(git status --porcelain -unormal 2> /dev/null)" ]]; then
       prompt_info_git+="%F{yellow}*"
     fi
