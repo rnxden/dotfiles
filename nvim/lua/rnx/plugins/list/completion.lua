@@ -95,8 +95,12 @@ return {
       opts.cmdline.completion = {}
       opts.cmdline.completion.list = {}
       opts.cmdline.completion.list.selection = {
-        preselect = true, -- select first item
+        preselect = false, -- select first item
         auto_insert = true, -- insert selected item
+      }
+
+      opts.cmdline.completion.menu = {
+        auto_show = true,
       }
 
       opts.cmdline.keymap = {
