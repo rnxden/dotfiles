@@ -31,6 +31,16 @@ return {
           'query',
           'regex',
           'sql',
+
+          -- Javascript/Typescript
+          'javascript',
+          'typescript',
+          'tsx',
+          'jsdoc',
+
+          -- HTML/CSS
+          'html',
+          'css',
         },
         sync_install = false,
         auto_install = false,
