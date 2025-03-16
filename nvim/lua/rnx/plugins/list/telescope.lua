@@ -20,10 +20,8 @@ return {
             no_ignore = false,
             no_ignore_parent = false,
             file_ignore_patterns = {
-              '^%.git$',
-              '^%.git/',
-              '/%.git$',
-              '/%.git/',
+              '%.git$',
+              '%.git/',
             },
           })
         end,
@@ -49,8 +47,8 @@ return {
                 search = input,
                 additional_args = { '--hidden' },
                 file_ignore_patterns = {
-                  '^%.git$',
-                  '^%.git/',
+                  '%.git$',
+                  '%.git/',
                 },
               })
             end
@@ -78,8 +76,8 @@ return {
           require('telescope.builtin').live_grep({
             additional_args = { '--hidden' },
             file_ignore_patterns = {
-              '^%.git$',
-              '^%.git/',
+              '%.git$',
+              '%.git/',
             },
           })
         end,
