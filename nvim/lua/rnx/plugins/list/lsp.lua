@@ -27,6 +27,11 @@ return {
         lua_ls = {
           settings = { Lua = { hint = { enable = true } } },
         },
+
+        ts_ls = {},
+
+        html = {},
+        cssls = {},
       },
     },
 
