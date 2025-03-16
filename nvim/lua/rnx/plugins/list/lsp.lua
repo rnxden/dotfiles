@@ -44,7 +44,6 @@ return {
         lspconfig[server_name].setup(server_opts)
       end
 
-      -- TODO: Not sure if this runs when the buffer is created or entered. Duplicate autocmds possible.
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp_attach', { clear = true }),
         callback = function(args)
