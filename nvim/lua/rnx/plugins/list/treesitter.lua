@@ -30,6 +30,7 @@ return {
           -- Tooling languages
           'query',
           'regex',
+          'sql',
         },
         sync_install = false,
         auto_install = false,
