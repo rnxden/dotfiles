@@ -83,6 +83,9 @@ return {
           map('n', '<leader>a', vim.lsp.buf.code_action, map_opt)
 
           -- Enable document highlights for language servers that support it
+
+          -- NOTE: Using vim-illuminate as an alternative until CursorHold stops relying on 'updatetime'
+          --[[
           local lsp_document_highlights_method = vim.lsp.protocol.Methods.textDocument_documentHighlight
           local lsp_document_highlights_supported =
             client.supports_method(lsp_document_highlights_method, { bufnr = bufnr })
@@ -98,6 +101,7 @@ return {
               callback = vim.lsp.buf.clear_references,
             })
           end
+          --]]
 
           -- Enable inlay hints toggling for language servers that support it
           local lsp_inlay_hints_method = vim.lsp.protocol.Methods.textDocument_inlayHint
