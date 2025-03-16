@@ -16,4 +16,17 @@ return {
       require('ibl').setup(opts)
     end,
   },
+
+  -- Sign column git status
+  {
+    'lewis6991/gitsigns.nvim',
+
+    event = 'BufReadPost',
+
+    opts = {},
+
+    config = function(_, opts)
+      require('gitsigns').setup(opts)
+    end,
+  },
 }
