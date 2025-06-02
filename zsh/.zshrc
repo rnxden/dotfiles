@@ -104,8 +104,6 @@ alias gs="git status --short --branch"
 alias gsw="git switch"
 
 # Other shortcuts
-alias v="vim"
-alias nv="nvim"
 alias d="docker"
 alias k="kubectl"
 
