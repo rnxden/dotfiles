@@ -88,8 +88,22 @@ alias xa="x -a"
 alias xal="x -al"
 alias xl="x -l"
 
-# Other shortcuts
+# Git shortcuts
 alias g="git"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gf="git fetch"
+alias gl="git log --all --graph --format=format:'%C(bold yellow)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(auto)%d%C(reset)'"
+alias gll="git log --all --graph --format=format:'%C(bold yellow)%h%C(reset) - %C(bold blue)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset) %C(dim white)- %an <%ae>%C(reset)%n%C(white)%B%C(reset)'"
+alias gp="git pull"
+alias gps="git push"
+alias gs="git status --short --branch"
+alias gsw="git switch"
+
+# Other shortcuts
 alias v="vim"
 alias nv="nvim"
 alias d="docker"
