@@ -74,7 +74,6 @@ alias ip="ip --color=auto"
 
 # Backtrack directories
 alias ..="cd .."
-alias ...="cd ../.."
 
 # Zoxide shortcuts (cd alternative)
 eval "$(zoxide init zsh)"
