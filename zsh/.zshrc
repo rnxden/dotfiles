@@ -230,5 +230,10 @@ bindkey '^y' autosuggest-accept
 
 ## Misc
 
+# Source local .zshrc
+if [[ -e "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
+
 # Disable CTRL+S hanging
 stty -ixon
