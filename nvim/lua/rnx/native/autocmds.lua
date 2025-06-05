@@ -26,6 +26,18 @@ autocmd('InsertLeave', {
   end,
 })
 
+-- Disable line numbers in man pages
+local man_numbers = augroup('man_numbers', augroup_opts)
+
+autocmd('FileType', {
+  group = man_numbers,
+  pattern = 'man',
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
+
 -- Enforce 'formatoptions' setting
 local format_options = augroup('format_options', augroup_opts)
 
