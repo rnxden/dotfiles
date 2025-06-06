@@ -2,6 +2,7 @@ return {
   -- Native treesitter client configuration tool
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main', -- TODO: Remove this after 'main' becomes the official default branch (SEE: f976acd)
 
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects', -- textobjects
