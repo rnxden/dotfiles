@@ -2,118 +2,50 @@ return {
   -- Native treesitter client configuration tool
   {
     'nvim-treesitter/nvim-treesitter',
+    lazy = false,
     branch = 'main', -- TODO: Remove this after 'main' becomes the official default branch (SEE: f976acd)
 
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects', -- textobjects
-    },
-
-    lazy = false,
-
-    build = ':TSUpdate',
-
-    opts = function()
-      local opts = {
-        ensure_installed = {
-          -- Neovim languages
-          'vim',
-          'vimdoc',
-          'lua',
-          'luadoc',
-          'luap',
-
-          -- Config languages
-          'editorconfig',
-          'json',
-          'yaml',
-          'toml',
-
-          -- Tooling languages
-          'query',
-          'regex',
-          'sql',
-
-          -- Javascript/Typescript
-          'javascript',
-          'typescript',
-          'tsx',
-          'jsdoc',
-
-          -- HTML/CSS
-          'html',
-          'css',
-        },
-        sync_install = false,
-        auto_install = false,
-
-        highlight = {
-          enable = true,
-        },
-
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<leader>v',
-            node_incremental = '<leader>v',
-            scope_incremental = false,
-            node_decremental = false,
-          },
-        },
-
-        indent = {
-          enable = true,
-        },
-
-        textobjects = {
-          select = { enable = false }, -- enabled and dynamically configured below
-          swap = { enable = false },
-          move = { enable = false }, -- enabled and dynamically configured below
-          lsp_interop = { enable = false },
-        },
-      }
-
-      local textobjects = {
-        g = { '@assignment.rhs', '@assignment.rhs' },
-        G = { '@assignment.lhs', '@assignment.lhs' },
-        R = { '@attribute.inner', '@attribute.outer' },
-        b = { '@block.inner', '@block.outer' },
-        x = { '@call.inner', '@call.outer' },
-        c = { '@class.inner', '@class.outer' },
-        m = { '@comment.outer', '@comment.outer' }, -- @comment.inner is unsupported in most languages
-        n = { '@conditional.inner', '@conditional.outer' },
-        f = { '@function.inner', '@function.outer' },
-        l = { '@loop.inner', '@loop.outer' },
-        a = { '@parameter.inner', '@parameter.outer' },
-        r = { '@return.inner', '@return.outer' },
-      }
-
-      opts.textobjects.select.enable = true
-      opts.textobjects.select.keymaps = {}
-
-      opts.textobjects.move.enable = true
-      opts.textobjects.move.goto_next_start = {}
-      opts.textobjects.move.goto_next_end = {}
-      opts.textobjects.move.goto_previous_start = {}
-      opts.textobjects.move.goto_previous_end = {}
-
-      for key, textobject in pairs(textobjects) do
-        local i = textobject[1]
-        local a = textobject[2]
-
-        opts.textobjects.select.keymaps['i' .. key] = i
-        opts.textobjects.select.keymaps['a' .. key] = a
-
-        opts.textobjects.move.goto_next_start[']' .. key] = a
-        opts.textobjects.move.goto_next_end['g]' .. key] = a
-        opts.textobjects.move.goto_previous_start['[' .. key] = a
-        opts.textobjects.move.goto_previous_end['g[' .. key] = a
-      end
-
-      return opts
-    end,
+    opts = {},
 
     config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
+      local treesitter = require('nvim-treesitter')
+      treesitter.setup(opts)
+
+      -- Install language parsers
+      local ensure_installed = {
+        -- nvim
+        'vim',
+        'vimdoc',
+        'lua',
+        'luadoc',
+        'luap',
+
+        -- js/ts
+        'javascript',
+        'typescript',
+        'jsx',
+        'tsx',
+        'jsdoc',
+      }
+
+      treesitter.install(ensure_installed):wait()
+      treesitter.update()
+
+      -- Enable treesitter highlighting
+      local ensure_installed_filetypes = {}
+
+      for _, lang in pairs(ensure_installed) do
+        local filetypes = vim.treesitter.language.get_filetypes(lang)
+        vim.list_extend(ensure_installed_filetypes, filetypes)
+      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('treesitter_highlight', { clear = true }),
+        pattern = ensure_installed_filetypes,
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
     end,
   },
 }
