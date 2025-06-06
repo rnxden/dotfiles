@@ -5,10 +5,6 @@ return {
     'saghen/blink.cmp',
     version = '*',
 
-    dependencies = {
-      'echasnovski/mini.icons', -- icons
-    },
-
     event = { 'InsertEnter', 'CmdlineEnter' },
 
     -- Because of the deeply nested nature of blink.cmp's config and documentation, a function is more suitable here.
@@ -31,23 +27,6 @@ return {
       opts.completion.menu.scrolloff = 0 -- wtf why is this 2 by default
       opts.completion.menu.draw = {
         columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' } },
-
-        components = {
-          -- Use kind icons from mini.icons
-          kind_icon = {
-            ellipsis = false,
-
-            text = function(ctx)
-              local icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-              return icon
-            end,
-
-            highlight = function(ctx)
-              local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-              return hl
-            end,
-          },
-        },
       }
 
       -- Configuration > Completion > Documentation
