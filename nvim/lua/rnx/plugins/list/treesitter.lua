@@ -8,7 +8,7 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects', -- textobjects
     },
 
-    event = 'VeryLazy',
+    lazy = false,
 
     build = ':TSUpdate',
 
