@@ -22,7 +22,7 @@ return {
         severity_sort = true,
       },
 
-      -- Options passed to `lspconfig[server].setup()`
+      -- Options passed to `vim.lsp.config()`
       servers = {
         lua_ls = {
           settings = { Lua = { hint = { enable = true } } },
@@ -40,13 +40,9 @@ return {
       vim.diagnostic.config(opts.diagnostics)
 
       -- Configure language servers
-      local lspconfig = require('lspconfig')
-
       for server_name, server_opts in pairs(opts.servers) do
-        local cmp_capabilities = require('blink.cmp').get_lsp_capabilities()
-        server_opts.capabilities = cmp_capabilities -- hook blink.cmp into lsp client
-
-        lspconfig[server_name].setup(server_opts)
+        vim.lsp.enable(server_name)
+        vim.lsp.config(server_name, server_opts)
       end
 
       vim.api.nvim_create_autocmd('LspAttach', {
