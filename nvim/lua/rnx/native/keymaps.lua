@@ -37,6 +37,3 @@ map('n', '<C-d>', '<C-d>zz')
 
 map('n', '<C-f>', '<C-f>zz')
 map('n', '<C-b>', '<C-b>zz')
-
--- Remove keymap for K (opening man pages)
-map('n', 'K', '<NOP>')
