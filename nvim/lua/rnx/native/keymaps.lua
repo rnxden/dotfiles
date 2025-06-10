@@ -38,11 +38,5 @@ map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-f>', '<C-f>zz')
 map('n', '<C-b>', '<C-b>zz')
 
--- Navigate quickfix/location lists using more accessible keys
-map('n', '<C-j>', '<CMD>cnext<CR>zz')
-map('n', '<C-k>', '<CMD>cprev<CR>zz')
-map('n', '<M-j>', '<CMD>lnext<CR>zz')
-map('n', '<M-k>', '<CMD>lprev<CR>zz')
-
 -- Remove keymap for K (opening man pages)
 map('n', 'K', '<NOP>')
