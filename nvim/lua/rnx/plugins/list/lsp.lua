@@ -49,6 +49,15 @@ return {
         vim.lsp.config(server_name, server_opts)
       end
 
+      -- No longer creating keymaps for most LSP-related functions:
+      -- * hover, signature help
+      -- * goto definition, implementation, references
+      -- * goto diagnostics
+      -- * code action
+
+      -- These keymaps are now created by default in Neovim 0.11
+      -- SEE: `lsp-defaults` `default-mappings`
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp_attach', { clear = true }),
         callback = function(args)
@@ -57,34 +66,6 @@ return {
           if not client then
             return
           end
-
-          -- Revert default modifications made by lspconfig (:help lsp-defaults)
-          vim.bo[bufnr].omnifunc = nil
-          vim.bo[bufnr].tagfunc = nil
-          vim.bo[bufnr].formatexpr = nil
-          pcall(vim.keymap.del, 'n', 'K', { buffer = bufnr })
-
-          -- Create LSP-related keymaps
-          local map = vim.keymap.set
-          local map_opt = { buffer = args.buf }
-
-          local function theme(picker) -- apply compact theme to telescope picker
-            return function()
-              picker(require('telescope.themes').get_dropdown())
-            end
-          end
-
-          map('n', 'K', vim.lsp.buf.hover, map_opt)
-          map('n', 'gs', vim.lsp.buf.signature_help, map_opt)
-
-          map('n', 'gd', theme(require('telescope.builtin').lsp_definitions), map_opt)
-          map('n', 'gD', vim.lsp.buf.declaration, map_opt) -- lol
-          map('n', 'gr', theme(require('telescope.builtin').lsp_references), map_opt)
-          map('n', 'gI', theme(require('telescope.builtin').lsp_implementations), map_opt)
-          map('n', 'gy', theme(require('telescope.builtin').lsp_type_definitions), map_opt)
-
-          map('n', '<leader>r', vim.lsp.buf.rename, map_opt)
-          map('n', '<leader>a', vim.lsp.buf.code_action, map_opt)
 
           -- Enable document highlights for language servers that support it
 
@@ -112,9 +93,9 @@ return {
           local lsp_inlay_hints_supported = client.supports_method(lsp_inlay_hints_method, { bufnr = bufnr })
 
           if lsp_inlay_hints_supported then
-            map('n', '<leader>i', function()
+            vim.keymap.set('n', 'grh', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-            end, map_opt)
+            end, { bufnr = bufnr })
           end
 
           -- Enable code lens for language servers that support it
