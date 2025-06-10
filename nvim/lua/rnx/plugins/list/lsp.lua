@@ -20,6 +20,10 @@ return {
         float = true,
         update_in_insert = false,
         severity_sort = true,
+        jump = {
+          float = true,
+          wrap = true,
+        },
       },
 
       -- Options passed to `vim.lsp.config()`
