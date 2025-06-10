@@ -90,7 +90,7 @@ return {
 
           -- Enable inlay hints toggling for language servers that support it
           local lsp_inlay_hints_method = vim.lsp.protocol.Methods.textDocument_inlayHint
-          local lsp_inlay_hints_supported = client.supports_method(lsp_inlay_hints_method, { bufnr = bufnr })
+          local lsp_inlay_hints_supported = client:supports_method(lsp_inlay_hints_method, bufnr)
 
           if lsp_inlay_hints_supported then
             vim.keymap.set('n', 'grh', function()
@@ -100,7 +100,7 @@ return {
 
           -- Enable code lens for language servers that support it
           local lsp_code_lens_method = vim.lsp.protocol.Methods.textDocument_codeLens
-          local lsp_code_lens_supported = client.supports_method(lsp_code_lens_method, { bufnr = bufnr })
+          local lsp_code_lens_supported = client:supports_method(lsp_code_lens_method, bufnr)
 
           if lsp_code_lens_supported then
             vim.lsp.codelens.refresh({ bufnr = bufnr })
