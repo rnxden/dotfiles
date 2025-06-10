@@ -88,7 +88,7 @@ return {
           if lsp_inlay_hints_supported then
             vim.keymap.set('n', 'grh', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-            end, { bufnr = bufnr })
+            end, { buffer = bufnr })
           end
 
           -- Enable code lens for language servers that support it
