@@ -2,14 +2,7 @@ return {
   -- Native LSP client configuration tool
   {
     'neovim/nvim-lspconfig',
-
-    dependencies = {
-      'folke/lazydev.nvim', -- luals
-      'saghen/blink.cmp', -- completions
-      'nvim-telescope/telescope.nvim', -- keymaps
-    },
-
-    event = 'BufReadPost',
+    lazy = false,
 
     opts = {
       -- Options passed to `vim.diagnostic.config()`
