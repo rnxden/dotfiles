@@ -29,6 +29,8 @@ return {
         html = {},
         cssls = {},
         tailwindcss = {},
+
+        pyright = {},
       },
     },
 
