@@ -26,6 +26,9 @@ return {
         'jsx',
         'tsx',
         'jsdoc',
+
+        -- python
+        'python',
       }
 
       treesitter.install(ensure_installed):wait()
