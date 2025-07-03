@@ -28,6 +28,8 @@ return {
 
         html = { 'prettier' },
         css = { 'prettier' },
+
+        python = { 'ruff_format', 'ruff_organize_imports' },
       },
 
       format_on_save = {
