@@ -124,7 +124,7 @@ precmd_prompt_info_time() {
     (( minutes > 0 )) && human+="${minutes}m"
     human+="${seconds}s"
 
-    prompt_info_time="%F{blue}$human%f "
+    prompt_info_time="%F{blue}$human "
   fi
 
   unset prompt_data_time
@@ -136,7 +136,7 @@ precmd_prompt_info_venv() {
   if [[ -n $VIRTUAL_ENV ]]; then
     local venv="$(dirname "$VIRTUAL_ENV")"
     venv="$(basename "$venv")"
-    prompt_info_venv="%F{blue}$venv%F{white}:%f"
+    prompt_info_venv="%F{blue}$venv%F{white}:"
   fi
 }
 
@@ -159,7 +159,7 @@ precmd_prompt_info_cwd() {
     prompt_info_cwd+="$dirname_trunc/"
   done
 
-  prompt_info_cwd+="%F{cyan}${dirnames[-1]}%f"
+  prompt_info_cwd+="%F{cyan}${dirnames[-1]}"
 }
 
 precmd_prompt_info_git() {
@@ -193,8 +193,6 @@ precmd_prompt_info_git() {
     if [[ ! -z "$(git status --porcelain -unormal 2> /dev/null)" ]]; then
       prompt_info_git+="%F{yellow}*"
     fi
-
-    prompt_info_git+="%f"
   fi
 }
 
