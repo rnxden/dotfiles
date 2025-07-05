@@ -108,16 +108,6 @@ alias k="kubectl"
 
 ## Prompt
 
-precmd_prompt_info_venv() {
-  unset prompt_info_venv
-
-  if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="$(dirname "$VIRTUAL_ENV")"
-    venv="$(basename "$venv")"
-    prompt_info_venv="%F{blue}$venv%F{white}:%f"
-  fi
-}
-
 precmd_prompt_info_time() {
   unset prompt_info_time
 
@@ -138,6 +128,16 @@ precmd_prompt_info_time() {
   fi
 
   unset prompt_data_time
+}
+
+precmd_prompt_info_venv() {
+  unset prompt_info_venv
+
+  if [[ -n $VIRTUAL_ENV ]]; then
+    local venv="$(dirname "$VIRTUAL_ENV")"
+    venv="$(basename "$venv")"
+    prompt_info_venv="%F{blue}$venv%F{white}:%f"
+  fi
 }
 
 precmd_prompt_info_cwd() {
@@ -207,8 +207,8 @@ zmodload zsh/datetime # for $EPOCHSECONDS
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # for venv prompt
 
 precmd_prompt_info() {
-  precmd_prompt_info_venv
   precmd_prompt_info_time
+  precmd_prompt_info_venv
   precmd_prompt_info_cwd
   precmd_prompt_info_git
 }
@@ -219,7 +219,7 @@ precmd_functions+=( precmd_prompt_info )
 preexec_functions+=( preexec_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\$prompt_info_venv\$prompt_info_time\$prompt_info_cwd\$prompt_info_git "
+PROMPT="\$prompt_info_time\$prompt_info_venv\$prompt_info_cwd\$prompt_info_git "
 PROMPT+="%(?:%F{green}:%F{red})❯%f "
 
 # Make command line navigation behave like emacs
