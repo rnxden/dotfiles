@@ -136,7 +136,7 @@ precmd_prompt_info_venv() {
   if [[ -n $VIRTUAL_ENV ]]; then
     local venv="$(dirname "$VIRTUAL_ENV")"
     venv="$(basename "$venv")"
-    prompt_info_venv="%F{blue}$venv%F{white}:"
+    prompt_info_venv="%F{yellow}$venv%F{white}:"
   fi
 }
 
