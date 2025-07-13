@@ -108,6 +108,10 @@ return {
                 vim.lsp.codelens.refresh({ bufnr = bufnr })
               end,
             })
+
+            vim.keymap.set('n', 'grl', function()
+              vim.lsp.codelens.run()
+            end, { buffer = bufnr })
           end
         end,
       })
