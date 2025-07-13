@@ -29,6 +29,13 @@ return {
 
         -- python
         'python',
+
+        -- golang
+        'go',
+        'gomod',
+        'gosum',
+        'gotmpl',
+        'gowork',
       }
 
       treesitter.install(ensure_installed):wait()
