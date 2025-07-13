@@ -30,6 +30,8 @@ return {
         css = { 'prettier' },
 
         python = { 'ruff_format', 'ruff_organize_imports' },
+
+        go = { 'goimports' },
       },
 
       format_on_save = {
