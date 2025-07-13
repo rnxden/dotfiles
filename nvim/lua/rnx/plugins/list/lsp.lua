@@ -31,6 +31,8 @@ return {
         tailwindcss = {},
 
         pyright = {},
+
+        gopls = {},
       },
     },
 
