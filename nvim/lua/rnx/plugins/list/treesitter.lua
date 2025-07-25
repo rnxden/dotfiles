@@ -36,6 +36,9 @@ return {
         'gosum',
         'gotmpl',
         'gowork',
+
+        -- sql
+        'sql',
       }
 
       treesitter.install(ensure_installed):wait()
