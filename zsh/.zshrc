@@ -99,6 +99,7 @@ alias gf="git fetch"
 alias gl="git log --all --graph --format=format:'%C(bold yellow)%h %C(reset)- %C(cyan)%an <%ae> %C(bold green)(%ar)%C(auto)%d%n%B'"
 alias gp="git pull"
 alias gps="git push"
+alias gr="git restore"
 alias gs="git status --short --branch"
 alias gsw="git switch"
 
