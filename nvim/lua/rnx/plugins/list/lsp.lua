@@ -48,7 +48,7 @@ return {
 
       -- No longer creating keymaps for most LSP-related functions:
       -- * hover, signature help
-      -- * goto definition, implementation, references
+      -- * goto definition, implementation, typedef, references
       -- * goto diagnostics
       -- * code action
 
