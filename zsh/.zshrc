@@ -63,7 +63,6 @@ autoload -U compinit && compinit -d "$HOME/.zcompdump"
 zstyle ':completion:*' menu select # enable completion menu
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # allow case insensitive matching
 zstyle ':completion:*:warnings' format '%F{red}no matches for:%f %d' # improve error message
-eval "$(dircolors)" && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize matches
 
 ## Aliases
 
