@@ -35,3 +35,6 @@ symlink "$PWD/git/.gitconfig" "$HOME/.gitconfig"
 
 # Create symlinks for nvim
 symlink "$PWD/nvim" "$CONFIG/nvim"
+
+# Create symlinks for ghostty
+symlink "$PWD/ghostty" "$CONFIG/ghostty"
