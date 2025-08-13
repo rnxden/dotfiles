@@ -224,20 +224,6 @@ PROMPT+="%(?:%F{green}:%F{red})❯%f "
 WORDCHARS="${WORDCHARS//[\/.-]}"
 bindkey -e
 
-## Plugins
-
-# Configure zsh-autosuggestions
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-ZSH_AUTOSUGGEST_STRATEGY=("completion")
-
-#ZSH_AUTOSUGGEST_CLEAR_WIDGETS=()
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
-ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
-ZSH_AUTOSUGGEST_IGNORE_WIDGETS=()
-
-bindkey '^y' autosuggest-accept
-
 ## Misc
 
 # Source local .zshrc
