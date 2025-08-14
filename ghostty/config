@@ -1,5 +1,7 @@
 theme = GitHub-Dark-High-Contrast
 
+font-feature = -calt
+
 shell-integration-features = no-cursor
 
 cursor-opacity = 0.5
