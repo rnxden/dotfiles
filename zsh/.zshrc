@@ -15,7 +15,7 @@ export MANPAGER='nvim +Man!'
 #export TERMINAL=
 #export BROWSER=
 
-# Enable truecolor support for programs that support it
+# Force truecolor support for programs that support it
 export COLORTERM=truecolor
 
 ## Plugin Manager
