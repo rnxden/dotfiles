@@ -4,6 +4,8 @@ font-feature = -calt
 
 shell-integration-features = no-cursor
 
-cursor-opacity = 0.5
+cursor-color = #eeeeee
+cursor-opacity = 0.25
+cursor-text = #eeeeee
 cursor-style = block
 cursor-style-blink = false
