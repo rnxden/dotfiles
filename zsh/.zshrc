@@ -108,7 +108,7 @@ precmd_prompt_info_venv() {
   if [[ -n $VIRTUAL_ENV ]]; then
     local venv="$(dirname "$VIRTUAL_ENV")"
     venv="$(basename "$venv")"
-    prompt_info_venv="%F{yellow}$venv%F{white}:"
+    prompt_info_venv="%F{white}$venv:"
   fi
 }
 
@@ -155,7 +155,7 @@ precmd_prompt_info() {
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\${prompt_info_venv}%F{blue}%~\$prompt_info_git %F{15}$ %f"
+PROMPT="\$prompt_info_venv%F{blue}%~\$prompt_info_git %F{15}$ %f"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
