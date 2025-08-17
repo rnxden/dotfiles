@@ -1,11 +1,5 @@
 ## Variables
 
-# Set XDG variables (not required, but useful for scripts)
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"   # stores data files
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"    # stores config files
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}" # stores persistent state files
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"       # stores non-essential cache files
-
 # Add local bin directory to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
