@@ -112,28 +112,6 @@ precmd_prompt_info_venv() {
   fi
 }
 
-precmd_prompt_info_cwd() {
-  prompt_info_cwd="%F{8}" # bright black
-
-  local dirnames=( ${(s:/:)$(print -P '%~')} )
-  local dirnames_len=${#dirnames}
-
-  if [[ "${dirnames[1]}" != "~" ]]; then
-    prompt_info_cwd+="/"
-  fi
-
-  for (( i=1; i<$dirnames_len; i++ )); do
-    local dirname=${dirnames[i]}
-    local dirname_trunc=${dirname[1,1]}
-    if [[ "$dirname_trunc" == "." ]]; then
-      dirname_trunc=${dirname[1,2]}
-    fi
-    prompt_info_cwd+="$dirname_trunc/"
-  done
-
-  prompt_info_cwd+="%F{cyan}${dirnames[-1]}"
-}
-
 precmd_prompt_info_git() {
   unset prompt_info_git
 
@@ -172,13 +150,12 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1 # for venv prompt
 
 precmd_prompt_info() {
   precmd_prompt_info_venv
-  precmd_prompt_info_cwd
   precmd_prompt_info_git
 }
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\$prompt_info_venv\$prompt_info_cwd\$prompt_info_git "
+PROMPT="\${prompt_info_venv}%F{blue}%~\${prompt_info_git} "
 PROMPT+="%(?:%F{green}:%F{red})❯%f "
 
 # Make command line navigation behave like emacs
