@@ -124,7 +124,7 @@ precmd_prompt_info_git() {
       || ref=$(git rev-parse --short HEAD 2> /dev/null) \
       || return 0
 
-    prompt_info_git=" %F{red}@%F{magenta}$ref"
+    prompt_info_git=" %F{cyan}$ref"
 
     # Check if branch is ahead/behind upstream
     local revs=( $(git rev-list --count --left-right '@{u}...HEAD' 2> /dev/null) )
@@ -132,16 +132,16 @@ precmd_prompt_info_git() {
     local ahead=$revs[2]
 
     if [[ behind -gt 0 ]]; then
-      prompt_info_git+="%F{white}-%F{red}$behind"
+      prompt_info_git+="%F{red}-$behind"
     fi
 
     if [[ ahead -gt 0 ]]; then
-      prompt_info_git+="%F{white}+%F{green}$ahead"
+      prompt_info_git+="%F{green}+$ahead"
     fi
 
     # Check if branch is dirty
     if [[ ! -z "$(git status --porcelain -unormal 2> /dev/null)" ]]; then
-      prompt_info_git+="%F{yellow}*"
+      prompt_info_git+="%F{white}*"
     fi
   fi
 }
@@ -155,7 +155,7 @@ precmd_prompt_info() {
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\${prompt_info_venv}%F{blue}%~\${prompt_info_git} %F{15}$ %f"
+PROMPT="\${prompt_info_venv}%F{blue}%~\$prompt_info_git %F{15}$ %f"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
