@@ -102,28 +102,6 @@ alias k="kubectl"
 
 ## Prompt
 
-precmd_prompt_info_time() {
-  unset prompt_info_time
-
-  local elapsed=$(( $EPOCHSECONDS - ${prompt_data_time:-$EPOCHSECONDS} ))
-  if [[ $elapsed -gt 5 ]]; then
-    local seconds=$(( elapsed % 60 ))
-    local minutes=$(( elapsed / 60 % 60 ))
-    local hours=$(( elapsed / 60 / 60 % 24 ))
-    local days=$(( elapsed / 60 / 60 / 24 ))
-
-    local human=""
-    (( days > 0 )) && human+="${days}d"
-    (( hours > 0 )) && human+="${hours}h"
-    (( minutes > 0 )) && human+="${minutes}m"
-    human+="${seconds}s"
-
-    prompt_info_time="%F{blue}$human "
-  fi
-
-  unset prompt_data_time
-}
-
 precmd_prompt_info_venv() {
   unset prompt_info_venv
 
@@ -190,28 +168,17 @@ precmd_prompt_info_git() {
   fi
 }
 
-preexec_prompt_info_time() {
-  prompt_data_time=$EPOCHSECONDS
-}
-
-zmodload zsh/datetime # for $EPOCHSECONDS
-
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # for venv prompt
 
 precmd_prompt_info() {
-  precmd_prompt_info_time
   precmd_prompt_info_venv
   precmd_prompt_info_cwd
   precmd_prompt_info_git
 }
-preexec_prompt_info() {
-  preexec_prompt_info_time
-}
 precmd_functions+=( precmd_prompt_info )
-preexec_functions+=( preexec_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\$prompt_info_time\$prompt_info_venv\$prompt_info_cwd\$prompt_info_git "
+PROMPT="\$prompt_info_venv\$prompt_info_cwd\$prompt_info_git "
 PROMPT+="%(?:%F{green}:%F{red})❯%f "
 
 # Make command line navigation behave like emacs
