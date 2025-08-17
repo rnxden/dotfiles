@@ -155,7 +155,7 @@ precmd_prompt_info() {
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="\$prompt_info_venv%F{blue}%~\$prompt_info_git %F{15}$ %f"
+PROMPT="%(?::%F{red}%? )\$prompt_info_venv%F{blue}%~\$prompt_info_git %F{15}$ %f"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
