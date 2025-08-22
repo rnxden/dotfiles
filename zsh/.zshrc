@@ -112,50 +112,15 @@ precmd_prompt_info_venv() {
   fi
 }
 
-precmd_prompt_info_git() {
-  unset prompt_info_git
-
-  # Check for git repository
-  if git rev-parse --git-dir &> /dev/null; then
-    # Get branch or refname
-    local ref
-    ref=$(git symbolic-ref --short HEAD 2> /dev/null) \
-      || ref=$(git describe --tags --exact-match HEAD 2> /dev/null) \
-      || ref=$(git rev-parse --short HEAD 2> /dev/null) \
-      || return 0
-
-    prompt_info_git=" %F{cyan}$ref"
-
-    # Check if branch is ahead/behind upstream
-    local revs=( $(git rev-list --count --left-right '@{u}...HEAD' 2> /dev/null) )
-    local behind=$revs[1]
-    local ahead=$revs[2]
-
-    if [[ behind -gt 0 ]]; then
-      prompt_info_git+="%F{red}-$behind"
-    fi
-
-    if [[ ahead -gt 0 ]]; then
-      prompt_info_git+="%F{green}+$ahead"
-    fi
-
-    # Check if branch is dirty
-    if [[ ! -z "$(git status --porcelain -unormal 2> /dev/null)" ]]; then
-      prompt_info_git+="%F{white}*"
-    fi
-  fi
-}
-
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # for venv prompt
 
 precmd_prompt_info() {
   precmd_prompt_info_venv
-  precmd_prompt_info_git
 }
 precmd_functions+=( precmd_prompt_info )
 setopt PROMPT_SUBST # expand variables in prompt
 
-PROMPT="%(?::%F{red}%? )\$prompt_info_venv%F{blue}%~\$prompt_info_git %F{15}$ %f"
+PROMPT="%(?::%F{red}%? )\$prompt_info_venv%F{blue}%~ %F{15}$ %f"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
