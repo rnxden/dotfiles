@@ -101,26 +101,7 @@ alias d="docker"
 alias k="kubectl"
 
 ## Prompt
-
-precmd_prompt_info_venv() {
-  unset prompt_info_venv
-
-  if [[ -n $VIRTUAL_ENV ]]; then
-    local venv="$(dirname "$VIRTUAL_ENV")"
-    venv="$(basename "$venv")"
-    prompt_info_venv="%F{white}$venv:"
-  fi
-}
-
-export VIRTUAL_ENV_DISABLE_PROMPT=1 # for venv prompt
-
-precmd_prompt_info() {
-  precmd_prompt_info_venv
-}
-precmd_functions+=( precmd_prompt_info )
-setopt PROMPT_SUBST # expand variables in prompt
-
-PROMPT="%(?::%F{red}%? )\$prompt_info_venv%F{blue}%~ %F{15}$ %f"
+PROMPT="%(?::%F{red}%? )%F{blue}%~ %F{15}$ %f"
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
