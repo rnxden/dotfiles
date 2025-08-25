@@ -5,7 +5,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Set default programs
 export EDITOR='nvim'
-export MANPAGER='nvim +Man!'
 #export TERMINAL=
 #export BROWSER=
 
