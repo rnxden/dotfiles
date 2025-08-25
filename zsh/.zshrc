@@ -101,7 +101,7 @@ alias d="docker"
 alias k="kubectl"
 
 ## Prompt
-PS1="%F{12}%~ %(?::%F{red}%? )%F{15}$ %f"
+PS1="%F{blue}%~ %(?::%F{red}%? )%f$ "
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
