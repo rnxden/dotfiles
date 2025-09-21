@@ -33,6 +33,9 @@ symlink "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
 # Create symlinks for git
 symlink "$PWD/git/.gitconfig" "$HOME/.gitconfig"
 
+# Create symlinks for vim
+symlink "$PWD/vim/.vimrc" "$HOME/.vimrc"
+
 # Create symlinks for nvim
 symlink "$PWD/nvim" "$CONFIG/nvim"
 
