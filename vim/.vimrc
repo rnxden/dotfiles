@@ -10,6 +10,3 @@ set shiftwidth=2
 
 set list
 set listchars=trail:·
-
-syntax on
-colorscheme default
