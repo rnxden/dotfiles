@@ -38,6 +38,3 @@ symlink "$PWD/nvim" "$CONFIG/nvim"
 
 # Create symlinks for ghostty
 symlink "$PWD/ghostty" "$CONFIG/ghostty"
-
-# Create symlinks for bat
-symlink "$PWD/bat" "$CONFIG/bat"
