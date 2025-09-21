@@ -67,12 +67,6 @@ alias ip="ip --color=auto"
 # Backtrack directories
 alias ..="cd .."
 
-# Zoxide shortcuts (cd alternative)
-eval "$(zoxide init zsh)"
-
-alias ze="zoxide edit"
-alias zq="zoxide query"
-
 # Eza shortcuts (ls alternative)
 alias x="eza --icons --group-directories-first -g --git --time-style='+%m.%d.%y %H:%M'"
 
