@@ -67,13 +67,6 @@ alias ip="ip --color=auto"
 # Backtrack directories
 alias ..="cd .."
 
-# Eza shortcuts (ls alternative)
-alias x="eza --icons --group-directories-first -g --git --time-style='+%m.%d.%y %H:%M'"
-
-alias xa="x -a"
-alias xal="x -al"
-alias xl="x -l"
-
 # Git shortcuts
 alias g="git"
 alias ga="git add"
