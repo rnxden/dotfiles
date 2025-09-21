@@ -82,10 +82,6 @@ alias gr="git restore"
 alias gs="git status --short --branch"
 alias gsw="git switch"
 
-# Other shortcuts
-alias d="docker"
-alias k="kubectl"
-
 ## Prompt
 PS1="%F{magenta}%~ %f$ "
 
