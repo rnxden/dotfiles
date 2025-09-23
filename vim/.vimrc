@@ -9,4 +9,4 @@ set softtabstop=2
 set shiftwidth=2
 
 set list
-set listchars=trail:·
+set listchars=trail:·,tab:\ \ ,
