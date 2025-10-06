@@ -18,8 +18,6 @@ opt.autoread = true -- watch for external changes to files
 -- Rendering
 opt.wrap = false -- don't wrap words that don't fit onscreen
 opt.lazyredraw = true -- reduce unnecessary screen redraws
-opt.cursorline = true -- highlight the line the cursor is on
-opt.cursorcolumn = false -- don't highlight the column the cursor is on
 opt.guicursor = 'a:block' -- use block cursor for all modes
 opt.signcolumn = 'yes' -- always show sign column
 
