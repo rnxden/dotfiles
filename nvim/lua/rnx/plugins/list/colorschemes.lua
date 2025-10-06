@@ -1,41 +1,26 @@
 return {
-  -- Soothing pastel colorscheme
+  -- Dark low-constrast colorscheme
   {
-    'catppuccin/nvim',
-    name = 'catppuccin.nvim',
+    'vague2k/vague.nvim',
 
     opts = {
-      flavour = 'mocha',
-
-      -- The `transparent_background` option also makes floating windows transparent, which doesn't look good with the
-      -- majority of plugin UIs, so we just set background-related highlights manually (see `custom_highlights` below)
-      transparent_background = false,
-      show_end_of_buffer = false, -- don't show '~' after the end of buffer
-      term_colors = false, -- don't set terminal colors
-
-      no_italic = true, -- don't allow italicized text
-      no_bold = false, -- allow bolded text
-      no_underline = false, -- allow underlined text
-
-      custom_highlights = function(colors)
-        return {
-          Normal = { bg = colors.none },
-          NormalNC = { bg = colors.none },
-
-          WinSeparator = { link = 'LineNr' },
-
-          StatusLine = { fg = colors.none, bg = colors.none },
-          StatusLineNC = { fg = colors.none, bg = colors.none },
-        }
-      end,
+      bold = true,
+      italic = false,
     },
 
     init = function()
-      vim.cmd.colorscheme('catppuccin')
+      vim.cmd('colorscheme vague')
+
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#242424' })
     end,
 
     config = function(_, opts)
-      require('catppuccin').setup(opts)
+      require('vague').setup(opts)
     end,
   },
 }
