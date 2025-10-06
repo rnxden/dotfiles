@@ -42,7 +42,7 @@ return {
       }
 
       treesitter.install(ensure_installed):wait()
-      treesitter.update()
+      treesitter.update():wait()
 
       -- Enable treesitter highlighting
       local ensure_installed_filetypes = {}
