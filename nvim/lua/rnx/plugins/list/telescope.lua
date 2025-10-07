@@ -15,7 +15,7 @@ return {
       {
         '<leader>f',
         function()
-          require('telescope.builtin').find_files({
+          require('telescope.builtin').find_files(require('telescope.themes').get_ivy({
             hidden = true,
             no_ignore = false,
             no_ignore_parent = false,
@@ -23,18 +23,18 @@ return {
               '%.git$',
               '%.git/',
             },
-          })
+          }))
         end,
       },
 
       {
         '<leader>F',
         function()
-          require('telescope.builtin').find_files({
+          require('telescope.builtin').find_files(require('telescope.themes').get_ivy({
             hidden = true,
             no_ignore = true,
             no_ignore_parent = true,
-          })
+          }))
         end,
       },
 
@@ -43,14 +43,14 @@ return {
         function()
           vim.ui.input({ prompt = 'Grep String: ' }, function(input)
             if input then
-              require('telescope.builtin').grep_string({
+              require('telescope.builtin').grep_string(require('telescope.themes').get_ivy({
                 search = input,
                 additional_args = { '--hidden' },
                 file_ignore_patterns = {
                   '%.git$',
                   '%.git/',
                 },
-              })
+              }))
             end
           end)
         end,
@@ -61,10 +61,10 @@ return {
         function()
           vim.ui.input({ prompt = 'Grep String (All Files): ' }, function(input)
             if input then
-              require('telescope.builtin').grep_string({
+              require('telescope.builtin').grep_string(require('telescope.themes').get_ivy({
                 search = input,
                 additional_args = { '--hidden', '--no-ignore' },
-              })
+              }))
             end
           end)
         end,
@@ -73,36 +73,36 @@ return {
       {
         '<leader>l',
         function()
-          require('telescope.builtin').live_grep({
+          require('telescope.builtin').live_grep(require('telescope.themes').get_ivy({
             additional_args = { '--hidden' },
             file_ignore_patterns = {
               '%.git$',
               '%.git/',
             },
-          })
+          }))
         end,
       },
 
       {
         '<leader>L',
         function()
-          require('telescope.builtin').live_grep({
+          require('telescope.builtin').live_grep(require('telescope.themes').get_ivy({
             additional_args = { '--hidden', '--no-ignore' },
-          })
+          }))
         end,
       },
 
       {
         '<leader>h',
         function()
-          require('telescope.builtin').help_tags()
+          require('telescope.builtin').help_tags(require('telescope.themes').get_ivy())
         end,
       },
 
       {
         '<leader>H',
         function()
-          require('telescope.builtin').man_pages()
+          require('telescope.builtin').man_pages(require('telescope.themes').get_ivy())
         end,
       },
     },
