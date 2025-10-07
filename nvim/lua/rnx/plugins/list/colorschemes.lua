@@ -11,6 +11,7 @@ return {
     init = function()
       vim.cmd('colorscheme vague')
 
+      -- TODO: Merge highlights instead of overwriting them
       vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none', fg = vim.api.nvim_get_hl(0, { name = 'StatusLine' }).fg })
