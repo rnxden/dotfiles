@@ -71,6 +71,6 @@ vim.api.nvim_create_autocmd('User', {
   callback = vim.schedule_wrap(function()
     local stats = lazy.stats()
     local stats_msg = string.format('Loaded with %d plugins in %.2fms', stats.count, stats.startuptime)
-    vim.notify(stats_msg, vim.log.levels.INFO, { group = 'priority', annote = 'nvim' })
+    vim.notify(stats_msg, vim.log.levels.INFO)
   end),
 })
