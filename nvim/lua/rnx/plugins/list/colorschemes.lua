@@ -8,6 +8,7 @@ return {
       italic = false,
     },
 
+    --[[
     init = function()
       vim.cmd('colorscheme vague')
 
@@ -19,6 +20,7 @@ return {
       vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#242424' })
     end,
+    --]]
 
     config = function(_, opts)
       require('vague').setup(opts)
@@ -31,19 +33,19 @@ return {
 
     dependencies = { 'rktjmp/lush.nvim' },
 
-    --[[
     init = function()
       vim.g.zenwritten_italic_comments = false
       vim.g.zenwritten_italic_strings = false
 
       vim.cmd.colorscheme('zenwritten')
 
+      local palette = require('zenbones.palette')
+
       vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none', fg = palette.dark.fg.hex })
+      vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none', fg = palette.dark.fg.darken(50).hex })
       vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
     end,
-    -]]
   },
 }
