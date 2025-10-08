@@ -35,11 +35,6 @@ return {
         auto_show_delay_ms = 250,
       }
 
-      -- Configuration > Completion > Ghost Text
-      opts.completion.ghost_text = {
-        enabled = true,
-      }
-
       -- Configuration > Keymap
       opts.keymap = {
         preset = 'none',
