@@ -46,6 +46,8 @@ return {
       vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none', fg = palette.dark.fg.hex })
       vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none', fg = palette.dark.fg.darken(50).hex })
       vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
+
+      vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { fg = palette.dark.blossom.hex })
     end,
   },
 }
