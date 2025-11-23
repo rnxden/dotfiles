@@ -33,11 +33,6 @@ return {
 
         go = { 'goimports' },
       },
-
-      format_on_save = {
-        async = false,
-        timeout_ms = 500,
-      },
     },
 
     config = function(_, opts)
