@@ -9,6 +9,7 @@ return {
       diagnostics = {
         underline = true,
         virtual_text = true,
+        virtual_lines = false,
         signs = true,
         float = true,
         update_in_insert = false,
