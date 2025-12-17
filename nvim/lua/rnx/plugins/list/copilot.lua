@@ -14,12 +14,12 @@ return {
         enabled = true,
         auto_trigger = true,
         keymap = {
-          accept = '<M-y>',
+          accept = '<C-s>',
           accept_word = false,
           accept_line = false,
-          next = '<M-n>',
-          prev = '<M-p>',
-          dismiss = '<M-e>',
+          next = false,
+          prev = false,
+          dismiss = '<C-g>',
         },
       },
 
