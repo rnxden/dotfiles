@@ -1,26 +1,23 @@
 return {
   -- Dark low-constrast colorscheme
   {
-    'vague2k/vague.nvim',
+    'vague-theme/vague.nvim',
 
     opts = {
       bold = true,
       italic = false,
+
+      on_highlights = function(highlights)
+        highlights.Normal.bg = 'none'
+        highlights.StatusLine.bg = 'none'
+        highlights.StatusLineNC.bg = 'none'
+        highlights.SignColumn.bg = 'none'
+      end,
     },
 
-    --[[
     init = function()
       vim.cmd('colorscheme vague')
-
-      -- TODO: Merge highlights instead of overwriting them
-      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none', fg = vim.api.nvim_get_hl(0, { name = 'StatusLine' }).fg })
-      vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none', fg = vim.api.nvim_get_hl(0, { name = 'StatusLineNC' }).fg })
-      vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'Whitespace', { fg = '#242424' })
     end,
-    --]]
 
     config = function(_, opts)
       require('vague').setup(opts)
@@ -33,6 +30,7 @@ return {
 
     dependencies = { 'rktjmp/lush.nvim' },
 
+    --[[
     init = function()
       vim.g.zenwritten_italic_comments = false
       vim.g.zenwritten_italic_strings = false
@@ -49,5 +47,6 @@ return {
 
       vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { fg = palette.dark.blossom.hex })
     end,
+    --]]
   },
 }
