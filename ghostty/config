@@ -1,4 +1,5 @@
-theme = iTerm2 Tango Dark
+#theme = iTerm2 Tango Dark
+theme = Vesper
 
 font-feature = -calt
 
