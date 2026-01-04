@@ -32,7 +32,6 @@ source "${ZIM_HOME}/init.zsh"
 
 ## Options
 
-HISTFILE="$HOME/.zhistory"
 HISTSIZE=25000 # maximum amount of history saved in a shell session
 SAVEHIST=25000 # maximum amount of history saved to disk
 
