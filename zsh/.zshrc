@@ -33,8 +33,8 @@ source "${ZIM_HOME}/init.zsh"
 ## Options
 
 HISTFILE="$HOME/.zhistory"
-HISTSIZE=10000 # maximum amount of history saved in a shell session
-SAVEHIST=10000 # maximum amount of history saved to disk
+HISTSIZE=25000 # maximum amount of history saved in a shell session
+SAVEHIST=25000 # maximum amount of history saved to disk
 
 # Share history between multiple concurrent shell sessions
 setopt APPEND_HISTORY     # append to history file instead of overwriting it
