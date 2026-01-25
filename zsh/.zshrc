@@ -32,6 +32,7 @@ source "${ZIM_HOME}/init.zsh"
 
 ## Options
 
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=25000 # maximum amount of history saved in a shell session
 SAVEHIST=25000 # maximum amount of history saved to disk
 
@@ -97,3 +98,10 @@ fi
 
 # Disable CTRL+S hanging
 stty -ixon
+
+# fnm
+FNM_PATH="/home/rnx/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
