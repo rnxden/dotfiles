@@ -83,7 +83,7 @@ alias gs="git status --short --branch"
 alias gsw="git switch"
 
 ## Prompt
-PS1="%F{green}%n@%m%f:%F{blue}%~%f$ "
+PS1="%F{green}%n@%m%f:%F{cyan}%~%f$ "
 
 # Make command line navigation behave like emacs
 WORDCHARS="${WORDCHARS//[\/.-]}"
