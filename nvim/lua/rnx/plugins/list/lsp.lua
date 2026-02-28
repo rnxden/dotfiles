@@ -22,9 +22,7 @@ return {
 
       -- Options passed to `vim.lsp.config()`
       servers = {
-        lua_ls = {
-          settings = { Lua = { hint = { enable = true } } },
-        },
+        lua_ls = {},
 
         ts_ls = {},
         html = {},
