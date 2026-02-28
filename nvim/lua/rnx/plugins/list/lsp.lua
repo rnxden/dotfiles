@@ -25,6 +25,7 @@ return {
         lua_ls = {},
 
         ts_ls = {},
+        jsonls = {},
         html = {},
         cssls = {},
         tailwindcss = {},
