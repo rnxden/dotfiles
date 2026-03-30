@@ -18,16 +18,13 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
 
-        json = { 'prettier' },
-        yaml = { 'prettier' },
-
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescriptreact = { 'prettier' },
-
-        html = { 'prettier' },
-        css = { 'prettier' },
+        javascript = { 'biome' },
+        typescript = { 'biome' },
+        javascriptreact = { 'biome' },
+        typescriptreact = { 'biome' },
+        json = { 'biome' },
+        html = { 'biome' },
+        css = { 'biome' },
 
         python = { 'ruff_format', 'ruff_organize_imports' },
 
