@@ -29,10 +29,6 @@ opt.tabstop = 2 -- make tabs 2 spaces wide
 opt.softtabstop = 2 -- make tabs insert 2 spaces
 opt.shiftwidth = 2 -- make indents 2 spaces wide
 
--- Folds
-opt.foldmethod = 'indent' -- fold based on indents
-opt.foldlevelstart = 99 -- open all folds by default
-
 -- Splits
 opt.splitbelow = true -- open horizontal splits on the bottom
 opt.splitright = true -- open vertical splits on the right
