@@ -25,21 +25,3 @@ autocmd('InsertLeave', {
     end
   end,
 })
-
--- Enforce 'formatoptions' setting
-local format_options = augroup('format_options', augroup_opts)
-
-autocmd('BufEnter', {
-  group = format_options,
-  callback = function()
-    vim.opt.formatoptions = vim.opt.formatoptions
-      - 't' -- don't wrap text using 'textwidth'
-      + 'c' -- wrap comments using 'textwidth'
-      + 'r' -- continue comments with newline in insert mode
-      - 'o' -- don't continue comments with newline in normal mode
-      + 'q' -- format comments with 'gq'
-      - 'a' -- don't auto format text
-      + 'n' -- format numbered lists
-      + 'j' -- remove comment leaders when joining lines
-  end,
-})
