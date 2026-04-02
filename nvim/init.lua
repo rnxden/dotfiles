@@ -1,5 +1,3 @@
---require('rnx.plugins')
-
 --[[ Settings ]]
 
 -- Keymaps
