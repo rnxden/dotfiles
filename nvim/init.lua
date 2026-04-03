@@ -155,7 +155,8 @@ require('copilot').setup({
     enabled = true,
     auto_trigger = true,
     keymap = {
-      accept = '<C-f>',
+      -- <C-f> is the Neovim-recommended default, but is already used by blink.cmp
+      accept = '<C-s>',
       accept_word = false,
       accept_line = false,
       next = '<C-g>',
