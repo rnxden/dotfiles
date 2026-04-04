@@ -127,10 +127,6 @@ vim.diagnostic.config({
   signs = true,
   update_in_insert = false,
   severity_sort = true,
-  jump = {
-    float = true, -- TODO: This option was removed?
-    wrap = true,
-  },
 })
 
 vim.lsp.enable('lua_ls')
