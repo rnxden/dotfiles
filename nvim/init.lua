@@ -23,6 +23,7 @@ vim.opt.relativenumber = true -- show relative line numbers
 vim.opt.list = true -- show whitespace characters
 vim.opt.listchars = { -- configure whitespace characters
   trail = '·',
+  tab = '» ',
 }
 
 -- Indentation
