@@ -250,6 +250,8 @@ require('oil').setup({
   },
 })
 
+vim.keymap.set('n', '<leader>e', require('oil').open)
+
 -- Visuals
 require('gitsigns').setup({})
 
