@@ -280,10 +280,7 @@ vim.g.zenwritten_italic_strings = false
 
 vim.cmd('colorscheme zenwritten')
 
-local palette = require('zenbones.palette')
-
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { fg = palette.dark.blossom.hex, bold = true })
