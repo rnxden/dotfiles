@@ -179,8 +179,6 @@ require('conform').setup({
     css = { 'biome' },
 
     python = { 'ruff_format', 'ruff_organize_imports' },
-
-    go = { 'goimports' },
   },
 })
 
