@@ -182,7 +182,7 @@ require('conform').setup({
   },
 })
 
-vim.keymap.set('n', 'grf', function()
+vim.keymap.set({ 'n', 'v' }, 'grf', function()
   require('conform').format({ async = true })
 end)
 
