@@ -107,6 +107,8 @@ vim.api.nvim_create_autocmd('InsertLeave', {
 --[[ Plugins ]]
 
 vim.pack.add({
+  { src = 'https://github.com/mason-org/mason.nvim' },
+  { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/folke/lazydev.nvim' },
   { src = 'https://github.com/zbirenbaum/copilot.lua' },
@@ -123,6 +125,12 @@ vim.pack.add({
   { src = 'https://github.com/zenbones-theme/zenbones.nvim' },
 })
 
+-- Mason
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = { 'lua_ls', 'ts_ls', 'jsonls', 'html', 'cssls', 'tailwindcss', 'pyright' },
+})
+
 -- LSP
 vim.diagnostic.config({
   underline = true,
@@ -132,15 +140,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
-
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('jsonls')
-vim.lsp.enable('html')
-vim.lsp.enable('cssls')
-vim.lsp.enable('tailwindcss')
-vim.lsp.enable('pyright')
-vim.lsp.enable('gopls')
 
 require('lazydev').setup({})
 
