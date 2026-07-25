@@ -128,7 +128,7 @@ vim.pack.add({
 -- Mason
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'ts_ls', 'astro', 'jsonls', 'html', 'cssls', 'tailwindcss', 'pyright' },
+  ensure_installed = { 'lua_ls', 'ts_ls', 'astro', 'jsonls', 'html', 'cssls', 'tailwindcss', 'pyright', 'tinymist' },
 })
 
 -- LSP
