@@ -177,6 +177,7 @@ require('conform').setup({
     json = { 'biome' },
     html = { 'biome' },
     css = { 'biome' },
+    astro = { 'biome', 'biome-organize-imports' },
 
     python = { 'ruff_format', 'ruff_organize_imports' },
   },
