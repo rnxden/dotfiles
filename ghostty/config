@@ -1,7 +1,8 @@
 theme = iTerm2 Tango Dark
 #theme = Vesper
 
-font-feature = -calt
+font-family = Maple Mono
+font-feature = -calt, +cv01
 
 shell-integration-features = no-cursor,ssh-env
 
