@@ -281,3 +281,7 @@ vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
+
+vim.api.nvim_set_hl(0, 'MiniFilesNormal', { bg = 'none' })
+--vim.api.nvim_set_hl(0, 'MiniFilesTitle', { bg = 'none' })
+--vim.api.nvim_set_hl(0, 'MiniFilesTitleFocused', { bg = 'none' })
