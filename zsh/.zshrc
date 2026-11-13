@@ -84,6 +84,7 @@ alias gsw="git switch"
 
 # Other shortcuts
 alias nv="nvim"
+alias venv="source .venv/bin/activate"
 
 ## Prompt
 PS1="%F{green}%n@%m%f:%F{cyan}%~%f$ "
