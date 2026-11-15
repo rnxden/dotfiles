@@ -256,7 +256,6 @@ require('gitsigns').setup({})
 
 -- Colorscheme
 
---[[
 require('vague').setup({
   bold = true,
   italic = false,
@@ -270,12 +269,13 @@ require('vague').setup({
 })
 
 vim.cmd('colorscheme vague')
---]]
 
+--[[
 vim.g.zenwritten_italic_comments = false
 vim.g.zenwritten_italic_strings = false
 
 vim.cmd('colorscheme zenwritten')
+--]]
 
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
@@ -283,5 +283,6 @@ vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'none' })
 
 vim.api.nvim_set_hl(0, 'MiniFilesNormal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'MiniFilesBorder', { bg = 'none' })
 --vim.api.nvim_set_hl(0, 'MiniFilesTitle', { bg = 'none' })
 --vim.api.nvim_set_hl(0, 'MiniFilesTitleFocused', { bg = 'none' })
